@@ -109,7 +109,7 @@ export default function LandingPage() {
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className="h-6 w-6"
+                className="h-6 w-6 pr-2"
               >
                 <line x1="4" x2="20" y1="12" y2="12" />
                 <line x1="4" x2="20" y1="6" y2="6" />
@@ -159,8 +159,8 @@ export default function LandingPage() {
         )}
       </header>
       <main className="flex-1">
-        <section className="w-full py-6 md:py-24 lg:py-32 bg-gradient-to-b from-white to-purple-50 ">
-          <div className="container px-4 md:px-6 mr-0 sm:mr-10">
+        <section className="w-full py-6 md:py-24 lg:py-14 bg-gradient-to-b from-white to-purple-50 ">
+          <div className="container px-4 md:px-6 mr-0 sm:mr-0">
             <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 xl:grid-cols-2">
               <div className="flex flex-col justify-center space-y-4">
                 <div className="space-y-2">
@@ -230,7 +230,7 @@ export default function LandingPage() {
               </div>
               <div className="flex items-center justify-center">
                 <img
-                  src="https://www.wafr.co/assets/img/welcome/welcome-mockup-2.png"
+                  src={require("../Mockup Wafer.png")}
                   alt="تطبيق WAFR"
                   className="rounded-2xl object-contain transform hover:scale-105 transition-transform duration-500 shadow-xl"
                   style={{ maxWidth: "500px", maxHeight: "600px" }}
