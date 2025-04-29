@@ -1,10 +1,5 @@
-"use client"
-
-import React from "react"
-import { useState } from "react"
-
-import backgroundImage from '../Mockup Wafer.png' // adapte le chemin selon ton projet
-
+import React, { useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 // Language translations
 const translations = {
@@ -44,14 +39,43 @@ const LoginPage = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [rememberMe, setRememberMe] = useState(false)
-
+  const [errorMessage, setErrorMessage] = useState("")
+  const [token, setToken] = useState("")
   const t = translations[language]
+  const navigate = useNavigate()
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     console.log("Login attempt with:", { email, password, rememberMe })
-    // Add your authentication logic here
+  
+    try {
+      const response = await fetch("http://localhost:5000/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: email,
+          password: password,
+        }),
+      })
+  
+      const data = await response.json()
+  
+      if (response.ok) {
+        console.log("Login successful, token:", data.token)
+        setToken(data.token) // Store the token in the state
+        localStorage.setItem("authToken", data.token) // Store the token in localStorage
+        navigate("/ApplicationPage") // Redirect after successful login
+      } else {
+        setErrorMessage(data.message || "Login failed. Please try again.")
+      }
+    } catch (error) {
+      console.error("Error during login:", error)
+      setErrorMessage("An error occurred during login.")
+    }
   }
+  
 
   const toggleLanguage = () => {
     setLanguage(language === "en" ? "fr" : "en")
@@ -59,13 +83,12 @@ const LoginPage = () => {
 
   return (
     <div
-        className="min-h-screen flex items-center justify-center p-4 bg-cover bg-center"
-        style={{
-          backgroundImage: `url(${backgroundImage})`,
-          
-        }}
-      >
-
+    className="min-h-screen flex items-center justify-center p-4 bg-cover bg-center"
+    style={{
+      backgroundImage: `url(${backgroundImage})`,
+      
+    }}
+  >
       <div className="absolute top-4 right-4">
         <button
           onClick={toggleLanguage}
@@ -76,21 +99,16 @@ const LoginPage = () => {
       </div>
 
       <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-xl shadow-lg">
-      <div className="text-center">
-        <img
-          src="https://www.wafr.co/assets/img/logo/logo.png"
-          style={{ width: "60px" }}
-          className="mx-auto"
-          alt="Logo"
-        />
-        <p className="mt-2 text-sm text-gray-600">{t.subtitle}</p>
-        <p className="mt-2 text-sm text-gray-600">  
-          You can Login with this credentials<br/>
-        "username": "testuser",<br/>
-        "password": "password123"
-        </p>
-      </div>
-
+        <div className="text-center">
+          <img
+            src="https://www.wafr.co/assets/img/logo/logo.png"
+            style={{ width: "60px" }}
+            className="mx-auto"
+            alt="Logo"
+          />
+          <p className="mt-2 text-sm text-gray-600">{t.subtitle}</p>
+          {errorMessage && <p className="text-sm text-red-500">{errorMessage}</p>}
+        </div>
 
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <div className="rounded-md shadow-sm space-y-4">

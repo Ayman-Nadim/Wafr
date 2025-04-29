@@ -285,7 +285,7 @@ function ApplicationPage() {
           <div className="flex items-center">
             <span className="text-sm text-gray-700 mr-2 hidden md:inline">Support Agent</span>
             <div className="h-8 w-8 rounded-full bg-[#9333ea] text-white flex items-center justify-center">
-              <span className="text-sm font-medium">TU</span>
+              <span className="text-sm font-medium">SA</span>
             </div>
           </div>
         </header>
