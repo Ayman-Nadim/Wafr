@@ -251,7 +251,7 @@ function ApplicationPage() {
     setUserData(null);
 
     // Redirect the user to the login page or home page
-    navigate("/login"); // Adjust this to your actual login route
+    navigate("/LoginPage"); // Adjust this to your actual login route
   };
 
   return (
@@ -458,7 +458,7 @@ function ApplicationPage() {
       </div>
       {/* Logout Button */}
       <button 
-    
+        onClick={handleLogout}
         className="fixed bottom-5 left-5 p-3 bg-purple-600 text-white rounded-full flex items-center space-x-2 hover:bg-purple-500 transition-all duration-300 shadow-md"
         >
         <svg 
