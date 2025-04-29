@@ -1,11 +1,20 @@
 import './App.css';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import LandingPage from './pages/LandingPage';
+import LoginPage from './pages/LoginPage';
 
 function App() {
   return (
-    <div className="App">
-      <LandingPage/>
-    </div>
+    <Router> {/* Wrap the routes inside the Router */}
+      <div className="App">
+        {/* <LandingPage/> */}
+        {/* The routes should be defined inside the Router */}
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/LoginPage" element={<LoginPage />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

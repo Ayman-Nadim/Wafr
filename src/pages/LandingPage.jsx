@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { Download, CheckCircle, Star, Users, ShieldCheck, ShoppingBag, TrendingUp, Zap, Gift } from "lucide-react"
+import { Link } from 'react-router-dom';
 
 export default function LandingPage() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -91,9 +92,9 @@ export default function LandingPage() {
             {/* <button className="hidden md:flex h-10 items-center justify-center rounded-md bg-purple-600 px-8 text-sm font-medium text-white hover:bg-purple-700 transition-colors">
               بدا دابا
             </button> */}
-            <button className="hidden md:flex h-10 items-center justify-center rounded-md bg-purple-600 px-8 text-sm font-medium text-white hover:bg-purple-700 transition-colors">
+            <Link to={"/Loginpage"} className="hidden md:flex h-10 items-center justify-center rounded-md bg-purple-600 px-8 text-sm font-medium text-white hover:bg-purple-700 transition-colors">
             تسجيل الدخول    
-            </button>
+            </Link>
             <button
               onClick={toggleMobileMenu}
               className="md:hidden h-10 w-10 items-center justify-center rounded-md border border-gray-200 bg-white text-sm font-medium"
